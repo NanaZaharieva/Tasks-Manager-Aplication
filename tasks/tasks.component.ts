@@ -14,6 +14,8 @@ taskForm !: FormGroup;
 tasks : ITask [] = [];
 inprogress : ITask [] = [];
 done : ITask [] = []; 
+updateIndex:any;
+isEditEnabled : boolean = false;
 
   constructor(private fb : FormBuilder) { }
 
@@ -26,13 +28,27 @@ done : ITask [] = [];
     this.tasks.push({
       description:this.taskForm.value.item,
       done:false
-    })
+    });
+    this.taskForm.reset();
   }
   deleteTask(i: number){
       this.tasks.splice(i,1)
   }
   deleteInProgressTask(i: number){
     this.inprogress.splice(i,1)
+}
+onEdit(item:ITask, i:number){
+  this.taskForm.controls['item'].setValue(item.description);
+  this.updateIndex = i;
+  this.isEditEnabled = true;
+}
+updateTask(){
+  this.tasks[this.updateIndex].description=this.taskForm.value.item;
+  this.tasks[this.updateIndex].done = false;
+  this.taskForm.reset();
+  this.updateIndex=undefined;
+  this.isEditEnabled = false;
+
 }
 deleDoneTask(i: number){
   this.done.splice(i,1)

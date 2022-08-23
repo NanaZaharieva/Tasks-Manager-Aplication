@@ -10,7 +10,8 @@
                             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                             <mat-hint>add task name </mat-hint>
                         </mat-form-field>
-                        <button (click)="addTask()" mat-raised-button [disabled]="taskForm.invalid" color="primary">Add</button>
+                        <button *ngIf="!isEditEnabled" (click)="addTask()" mat-raised-button [disabled]="taskForm.invalid" color="primary">Add</button>
+                        <button *ngIf="isEditEnabled" (click)="updateTask()" mat-raised-button [disabled]="taskForm.invalid" color="primary">Update</button>
                     </form>
                 </mat-card>
             </div>
@@ -31,7 +32,7 @@
                                 (cdkDropListDropped)="drop($event)">
                                 <div class="example-box" *ngFor="let item of tasks; let i = index" cdkDrag>{{item.description}}
                                     <div class="box">
-                                        <button mat-icon-button color="primary" (click)="deleteTask(i)"><mat-icon >edit</mat-icon></button>
+                                        <button mat-icon-button color="primary" (click)="onEdit(item, i)"><mat-icon >edit</mat-icon></button>
                                         <button mat-icon-button color="warn" (click)="deleteTask(i)"><mat-icon >delete</mat-icon></button>
                                     </div>
                                 </div>
