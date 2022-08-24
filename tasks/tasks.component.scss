@@ -64,7 +64,7 @@
 
   .head-title{
     margin: 0;
-    padding: 0;
+    padding: 15px;
     background-color: rgb(228, 222, 222);
     border-radius: 4px;
     color: #777272;
@@ -73,4 +73,5 @@
     span{
       font-weight: normal;
     }
+    text-align: center;
   }
