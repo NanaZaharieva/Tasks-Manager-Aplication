@@ -50,7 +50,7 @@ updateTask(){
   this.isEditEnabled = false;
 
 }
-deleDoneTask(i: number){
+deleteDoneTask(i: number){
   this.done.splice(i,1)
 }
   drop(event: CdkDragDrop<ITask[]>) {
